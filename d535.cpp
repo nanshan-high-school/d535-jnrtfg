@@ -1,17 +1,20 @@
 #include <iostream>
-#include <stdio.h>
+/*#include <stdio.h>
+#include <string>
+#include <cstdio>*/
 //記住 非int 因此要用字串char來想 字母有不同意思 
 
 
 int main(int argc, char** argv) 
 {
-	int withnum=0,ans[9999],now=0;
+	start:
+	int withnum=0,dou=0;
 	char enter[9999];
 	for(int i=0;i<=9999;i++)//洗乾淨 
 	{
 		enter[i]=0;
 	}
-	gets(enter);//記錄
+	scanf("%s",enter);//記錄
 	//printf("%s",enter);//返回字串 
 	for(int i=0;i<=9999;i++)//記錄總字數 
 	{
@@ -23,19 +26,31 @@ int main(int argc, char** argv)
 		{
 			break;
 		}
-		if(enter[31]>0)
+		if(enter[30]>0)
 		{
-			printf("INCORRECT");
+			printf("INCORRECT\n");
 			goto end;
 		}
 		else
 		{
-			if(enter[10]==0)
+			if(enter[9]==0)
 			{
-				printf("INCORRECT");
+				printf("INCORRECT\n");
 				goto end;
 			}
 		}
+	}
+	for(int i=0;i<=withnum-1;i++)
+	{
+		if(enter[i]%2==0)
+		{
+			dou=1;
+		}
+	}
+	if(dou==0)
+	{
+		printf("0\n");
+		goto end;
 	}
 	for(int j=0;j<=withnum-1;j++)
 	{
@@ -44,7 +59,7 @@ int main(int argc, char** argv)
 			//printf("\nNo.%d:%d",j+1,enter[j]-48);
 			//printf("\nNo.%d:%d是No.%d:%d的兩倍",j+1,2*enter[j]-48*2,j+1,enter[j]-48);
 			//printf("\nNo.%d:%d",j+2,enter[j+1]-48);
-			printf("INCORRECT");
+			printf("INCORRECT\n");
 			goto end;
 			break;
 		}
@@ -59,7 +74,7 @@ int main(int argc, char** argv)
 			}
 			else
 			{
-				printf("INCORRECT");
+				printf("INCORRECT\n");
 				//printf(" No,%d:%d   No,%d:%d",1+j,enter[0+j]-48,withnum-j,enter[withnum-j-1]-48);
 				goto end;
 			}
@@ -67,21 +82,12 @@ int main(int argc, char** argv)
 	}
 	for(int i=0;i<=withnum-1;i++)
 	{
-		if(enter[i]%2==1)
+		if(enter[i]%2==0)
 		{
-			break;
-		}
-		else
-		{
-			ans[now]=enter[i];
-			now++;
+			printf("%d",enter[i]-48);
 		}
 	}
-	for(int i=1;i<=now;i++)
-	{
-		printf("a");
-		printf("%d",ans[i]);
-	}
+	printf("\n");
 	end:
-	return 0;
+	goto start;
 }
